@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Quiz de Geografia</title>
+  <style>
+    body {
+      background-image: url('https://institucional.upis.br/blog/wp-content/uploads/2019/05/geografia-o-que-e-estuda-saiba-toda-historia.jpg');
+      background-size: cover;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      text-align: center;
+    }
+    #questoes {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+    #opcoes {
+      margin-bottom: 20px;
+    }
+    .opcao {
+      display: inline-block;
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #f0e4cc;
+      border: 1px solid #dbd1bd;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .opcao:hover {
+      background-color: darkred;
+    }
+    #resultado {
+      font-size: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quiz de Geografia!! 🌎</h1>
+  <div id="questoes"></div>
+  <div id="opcoes"></div>
+  <div id="resultado"></div>
+
+  <script>
+    var perguntas = [
+      { questao: "Que rio faz a divisa entre Piauí e Maranhão?", opcoes: ["Rio São Francisco", "Rio Parnaíba", "Rio Jaguaribe", "Rio Itapecuru"], resposta: "Rio Parnaíba" },
+      { questao: "Em que região da Ásia fica o Japão?", opcoes: ["Norte", "Sudeste", "Leste", "Sul"], resposta: "Leste" },
+      { questao: "Onde fica a maior praia do mundo?", opcoes: ["Brasil", "Austrália", "Canadá", "Estados Unidos"], resposta: "Brasil" },
+      { questao: "Qual é o maior oceano do mundo?", opcoes: ["Pacífico", "Atlântico", "Índico", "Ártico"], resposta: "Pacífico" },
+      { questao: "Qual é o país com mais ilhas?", opcoes: ["Malásia", "Filipinas", "Canadá", "Indonésia"], resposta: "Indonésia" },
+      { questao: "Qual é o maior rio do mundo?", opcoes: ["Amazonas", "Mississipi", "Nilo", "Rio da Prata"], resposta: "Nilo" },
+      { questao: "Qual é o maior continente do mundo?", opcoes: ["Ásia", "África", "Europa", "Oceania"], resposta: "Ásia" },
+      { questao: "O Brasil tem quantas regiões e quais são elas?", opcoes: ["5: norte, sul, leste, oeste e sudeste", "5: norte, sul, nordeste, oeste e sudeste", "4: norte, sul, leste, oeste", "5: norte, sul, sudeste, nordeste e centro-oeste"], resposta: "5: norte, sul, sudeste, nordeste e centro-oeste" },
+      { questao: "Quantos países o mundo tem oficialmente?", opcoes: ["200", "193", "198", "195"], resposta: "193" },
+      { questao: "Quantos continentes existem? (sem contar sub-continentes)", opcoes: ["5", "4", "7", "6"], resposta: "6" }
+    ];
+    var currentQuestionIndex = 0;
+
+    function displayQuestion() {
+      var questionElement = document.getElementById("questoes");
+      var optionsElement = document.getElementById("opcoes");
+      var currentQuestion = perguntas[currentQuestionIndex];
+
+      questionElement.textContent = currentQuestion.questao;
+      optionsElement.innerHTML = "";
+
+      currentQuestion.opcoes.forEach(function (opcao) {
+        var opcaoButton = document.createElement('div');
+        opcaoButton.classList.add('opcao');
+        opcaoButton.textContent = opcao;
+        opcaoButton.addEventListener('click', function () {
+          checkAnswer(opcao);
+        });
+        optionsElement.appendChild(opcaoButton);
+      });
+    }
+
+    function checkAnswer(selectedOption) {
+      var currentQuestion = perguntas[currentQuestionIndex];
+      var resultDiv = document.getElementById("resultado");
+
+      if (selectedOption === currentQuestion.resposta) {
+        resultDiv.textContent = "Acertou!! Ebaa";
+        resultDiv.style.color = "green";
+      } else {
+        resultDiv.textContent = "Errrrrrrrou!";
+        resultDiv.style.color = "red";
+      }
+      currentQuestionIndex++;
+      if (currentQuestionIndex < perguntas.length) {
+        setTimeout(displayQuestion, 1000);
+      } else {
+        resultDiv.textContent = "Nossa, já acabou?";
+      }
+    }
+    displayQuestion();
+  </script>
+</body>
+</html>
